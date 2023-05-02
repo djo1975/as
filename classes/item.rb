@@ -1,4 +1,5 @@
 require 'active_support/core_ext/numeric/time'
+require './book'
 
 # This class represents a label and its associated item
 class Item
@@ -18,7 +19,7 @@ class Item
     item
   end
 
-  def can_be_archived
+  def can_be_archived?
     publish_date < 10.years.ago
   end
 
