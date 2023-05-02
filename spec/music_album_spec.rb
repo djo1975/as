@@ -1,4 +1,4 @@
-require 'minitest/autorun'
+require 'rspec'
 require_relative '../classes/music_album'
 
 # Mock Item class
@@ -16,23 +16,25 @@ class Item
   end
 end
 
-class TestMusicAlbum < Minitest::Test
-  def setup
-    @album = MusicAlbum.new(1, true, true)
-  end
+RSpec.describe MusicAlbum do
+  describe "#can_be_archived?" do
+    before do
+      @album = MusicAlbum.new(1, true, true)
+    end
 
-  def test_can_be_archived?
-    @album.can_be_archived = false
-    assert_equal(false, @album.can_be_archived?)
-  end
+    it "returns false if `can_be_archived` is set to false" do
+      @album.can_be_archived = false
+      expect(@album.can_be_archived?).to be false
+    end
 
-  def test_can_be_archived_with_spotify?
-    @album.on_spotify = false
-    assert_equal(true, @album.can_be_archived?)
-  end
+    it "returns true if `on_spotify` is false" do
+      @album.on_spotify = false
+      expect(@album.can_be_archived?).to be true
+    end
 
-  def test_can_be_archived_with_spotify_and_archived?
-    @album.on_spotify = true
-    assert_equal(true, @album.can_be_archived?)
+    it "returns true if `on_spotify` is true and `can_be_archived` is true" do
+      @album.on_spotify = true
+      expect(@album.can_be_archived?).to be true
+    end
   end
 end
