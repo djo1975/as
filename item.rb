@@ -2,13 +2,12 @@ require 'active_support/core_ext/numeric/time'
 
 # This class represents a label and its associated item
 class Item
-  attr_accessor :id, :genre, :author, :source, :label, :publish_date, :archived
+  attr_accessor :id, :genre, :author, :label, :publish_date, :archived
 
   def initialize(metadata)
     @id = metadata.id
     @genre = metadata.genre
     @author = metadata.author
-    @source = metadata.source
   end
 
   def self.create(metadata, label: nil, publish_date: nil, archived: false)
@@ -30,12 +29,11 @@ end
 
 # This class represents a label and its associated item
 class MetaData
-  attr_accessor :id, :genre, :author, :source
+  attr_accessor :id, :genre, :author
 
-  def initialize(id:, genre:, author:, source:)
+  def initialize(id:, genre:, author:)
     @id = id
     @genre = genre
     @author = author
-    @source = source
   end
 end
