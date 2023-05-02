@@ -18,7 +18,7 @@ class Item
     item
   end
 
-  def can_be_archived
+  def can_be_archived?
     publish_date < 10.years.ago
   end
 
