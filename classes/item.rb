@@ -1,4 +1,5 @@
 require 'active_support/core_ext/numeric/time'
+require './book'
 
 # This class represents a label and its associated item
 class Item

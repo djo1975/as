@@ -1,6 +1,6 @@
 require './item'
 
-class Book << Item
+class Book < Item
     attr_accessor :publisher, :cover_state
 
     def initialize (publisher, cover_state:'')
