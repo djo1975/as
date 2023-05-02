@@ -17,22 +17,22 @@ class Item
 end
 
 RSpec.describe MusicAlbum do
-  describe "#can_be_archived?" do
+  describe '#can_be_archived?' do
     before do
       @album = MusicAlbum.new(1, true, true)
     end
 
-    it "returns false if `can_be_archived` is set to false" do
+    it 'returns false if `can_be_archived` is set to false' do
       @album.can_be_archived = false
       expect(@album.can_be_archived?).to be false
     end
 
-    it "returns true if `on_spotify` is false" do
+    it 'returns true if `on_spotify` is false' do
       @album.on_spotify = false
       expect(@album.can_be_archived?).to be true
     end
 
-    it "returns true if `on_spotify` is true and `can_be_archived` is true" do
+    it 'returns true if `on_spotify` is true and `can_be_archived` is true' do
       @album.on_spotify = true
       expect(@album.can_be_archived?).to be true
     end
