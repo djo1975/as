@@ -1,3 +1,4 @@
+require_relative 'item'
 # This class represents a music albums and its properties.
 class MusicAlbum < Item
   attr_accessor :on_spotify

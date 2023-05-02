@@ -1,3 +1,4 @@
+require_relative 'item'
 # This class represents a genre and its associated items.
 class Genre
   attr_accessor :id, :name, :items
