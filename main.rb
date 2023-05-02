@@ -12,32 +12,54 @@ def run
   puts '10 - Exit'
 end
 
+OPTIONS = {
+  1 => :list_books,
+  2 => :list_music_albums,
+  3 => :list_games,
+  4 => :list_genres,
+  5 => :list_labels,
+  6 => :list_authors,
+  7 => :add_book,
+  8 => :add_music_album,
+  9 => :add_game,
+  10 => :exit
+}.freeze
+
 def option(option)
-  case option
-  when 1
-    list_books
-  when 2
-    list_music_albums
-  when 3
-    list_games
-  when 4
-    list_generes
-  when 5
-    list_labels
-  when 6
-    list_authors
-  when 7
-    add_book
-  when 8
-    add_music_album
-  when 9
-    add_game
-  when 10
-    exit
+  method_name = OPTIONS[option]
+  if method_name
+    send(method_name)
   else
     puts 'Invalid option, please type correct number!'
   end
 end
+
+# def option(option)
+#   case option
+#   when 1
+#     list_books
+#   when 2
+#     list_music_albums
+#   when 3
+#     list_games
+#   when 4
+#     list_generes
+#   when 5
+#     list_labels
+#   when 6
+#     list_authors
+#   when 7
+#     add_book
+#   when 8
+#     add_music_album
+#   when 9
+#     add_game
+#   when 10
+#     exit
+#   else
+#     puts 'Invalid option, please type correct number!'
+#   end
+# end
 
 def main
   loop do
