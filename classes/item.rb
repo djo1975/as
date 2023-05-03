@@ -1,5 +1,3 @@
-require 'active_support/core_ext/numeric/time'
-
 # This class represents a label and its associated item
 class Item
   attr_accessor :id, :genre, :author, :label, :publish_date, :archived
