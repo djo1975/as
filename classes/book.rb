@@ -6,7 +6,7 @@ class Book < Item
   def initialize(publisher, cover_state = '')
     @publisher = publisher
     @cover_state = cover_state
-    super(id,name)
+    super(id, name)
   end
 
   def can_be_archived?

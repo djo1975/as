@@ -1,11 +1,5 @@
 require 'rspec'
 require_relative '../classes/book'
-# Mock Item class
-# class Item
-#   def can_be_archived?
-#     true
-#   end
-# end
 
 describe Book do
   let(:cover_state) { 'Book Title' }
