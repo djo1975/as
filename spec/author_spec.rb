@@ -5,7 +5,7 @@ require_relative '../classes/game'
 RSpec.describe Author do
   let(:author) { Author.new('Tom', 'Cruise') }
   let(:game) { Game.new('multiplayer', '2023-05-03') }
-    
+
   context 'When Author is created' do
     it 'should be an instance of Author' do
       expect(author).to be_an_instance_of(Author)
