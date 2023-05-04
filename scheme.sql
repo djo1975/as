@@ -42,14 +42,14 @@ create table genres(
 );
 
 -- Create labels table
-CREATE TABLE LABELS(
+CREATE TABLE LABEL(
   id INTEGER GENERATED ALWAYS AS INDENTITY PRIMARY KEY,
   title VARCHAR(255),
   color VARCHAR(255),
 );
 
 -- Create books table
-CREATE TABLE BOOKS(
+CREATE TABLE BOOK(
   id INTEGER GENERATED ALWAYS AS INDENTITY PRIMARY KEY,
   publish_date DATE,
   publisher VARCHAR(255),
