@@ -6,8 +6,8 @@ class Game < Item
 
   def initialize(date, multiplayer, last_played_at)
     # super(id, name)
-    super(date)
-    # super(date, multiplayer)
+    # super(date)
+    super(date, multiplayer)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
   end
