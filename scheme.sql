@@ -28,3 +28,19 @@ def can_be_archived(publish_date)
 super publish_date < 10.years.ago
 end
 end
+
+-- create games table
+CREATE TABLE game(
+  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  publish_date DATE,
+  multiplayer VARCHAR(80),
+  last_played_at DATE 
+  author_id INT REFERENCES author(id), 
+);
+
+-- Create authors table
+CREATE TABLE author(
+  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+  first_name VARCHAR(80),
+  last_name VARCHAR(80)
+);
