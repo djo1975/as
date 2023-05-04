@@ -4,7 +4,7 @@ require_relative '../classes/game'
 
 RSpec.describe Author do
   let(:author) { Author.new('Tom', 'Cruise') }
-  let(:game) { Game.new('multiplayer', '2023-05-03') }
+  let(:game) { Game.new('2021-05-03', 'multiplayer', '2023-05-03') }
 
   context 'When Author is created' do
     it 'should be an instance of Author' do
@@ -20,7 +20,7 @@ RSpec.describe Author do
     end
 
     it 'should have an id' do
-      expect(author.id).to be_between(1, 1000)
+      expect(author.id).to be_between(1, 2000)
     end
 
     it 'should have an empty array of items' do

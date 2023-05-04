@@ -2,7 +2,7 @@ require 'rspec'
 require_relative '../classes/game'
 
 RSpec.describe Game do
-  let(:game) { Game.new('multiplayer', '2023-05-03') }
+  let(:game) { Game.new('2021-05-03', 'multiplayer', '2023-05-03') }
 
   context 'When Game is created' do
     it 'should have a player type' do
