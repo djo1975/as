@@ -20,7 +20,7 @@ class App
     @genres = load_genres
     @item = []
     @books = load_books
-    @labels = []
+    @labels = load_labels
   end
 
   def run

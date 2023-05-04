@@ -21,6 +21,7 @@ module BookLabelModule
 
     new_book = Book.new(book_name, book_publisher, book_publish_date, book_cover_state)
     @books << new_book
+    save_book(@books)
 
     puts 'Please write title of the label  of the book? (e.g. Gift, New)'
     label_title = gets.chomp
@@ -30,6 +31,7 @@ module BookLabelModule
 
     label = Label.new(label_title, label_color)
     @labels << label
+    save_label(@labels)
 
     new_book.add_label(label)
   end
