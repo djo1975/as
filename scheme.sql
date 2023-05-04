@@ -11,24 +11,6 @@ CREATE TABLE  Item (
     add_genre INTEGER REFERENCES Genre(id),
     add_author INTEGER REFERENCES Author(id)
 )
-
-class Item
-attr_accessor:id,:author, :label,:publish_date, :archived
-attr_reader:can_be_archived, :move_to_archive
-
-def initialize(id, author, label, publish_date, archived)
-@id = id
-@author = author
-@label = label
-@publish_date = publish_date
-@archived = archived
-end
-
-def can_be_archived(publish_date)
-super publish_date < 10.years.ago
-end
-end
-
 -- create games table
 CREATE TABLE game(
   id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -43,4 +25,18 @@ CREATE TABLE author(
   id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   first_name VARCHAR(80),
   last_name VARCHAR(80)
+);
+
+-- Create music_albums table
+create table music_albums(
+  id serial not null primary key,
+  archived boolean,
+  publish_date date,
+  on_spotify boolean
+);
+
+-- Create genres table
+create table genres(
+  id serial not null primary key,
+  name varchar(100)
 );
