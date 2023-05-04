@@ -1,12 +1,17 @@
 require_relative 'modules/game_option_helper'
 require_relative 'classes/game'
 require_relative 'classes/author'
+require_relative 'classes/genre'
+require_relative './modules/music_album'
+require_relative './classes/music_album'
 
 class App
   include GameOptionHelper
-
+  include Music
   def initialize
     load_author_game
+    @music_album = load_musics
+    @genres = load_genres
   end
 
   def run
@@ -55,5 +60,17 @@ class App
 
   def add_game
     create_game
+  end
+
+  def add_music_album
+    create_music_album
+  end
+
+  def list_music_albums
+    display_music_albums
+  end
+
+  def list_genres
+    display_genres
   end
 end
