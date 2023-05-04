@@ -5,31 +5,22 @@ require_relative 'classes/genre'
 require_relative './modules/music_album'
 require_relative './classes/music_album'
 require_relative './modules/book_label_module'
-require_relative './data_preserver'
+require_relative './modules/book_storage'
+require_relative 'classes/book'
+require_relative 'classes/label'
 
 class App
   include GameOptionHelper
   include Music
   include BookLabelModule
+
   def initialize
     load_author_game
     @music_album = load_musics
     @genres = load_genres
     @item = []
-    @books = []
+    @books = load_books
     @labels = []
-  end
-
-  def data_loader(file)
-    return [] unless File.exist?("./data/#{file}.json")
-
-    File.open("./data/#{file}.json", 'r') do |f|
-      data = JSON.parse(f.read)
-      return data
-    end
-  end
-  def exit
-    File.write('./data/books.json', JSON.pretty_generate(@books))
   end
 
   def run
@@ -66,6 +57,18 @@ class App
     else
       puts 'Invalid option, please type correct number!'
     end
+  end
+
+  def add_book
+    create_book
+  end
+
+  def list_books
+    list_bookss
+  end
+
+  def list_labels
+    list_labelss
   end
 
   def list_games
