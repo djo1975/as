@@ -4,14 +4,32 @@ require_relative 'classes/author'
 require_relative 'classes/genre'
 require_relative './modules/music_album'
 require_relative './classes/music_album'
+require_relative './modules/book_label_module'
+require_relative './data_preserver'
 
 class App
   include GameOptionHelper
   include Music
+  include BookLabelModule
   def initialize
     load_author_game
     @music_album = load_musics
     @genres = load_genres
+    @item = []
+    @books = []
+    @labels = []
+  end
+
+  def data_loader(file)
+    return [] unless File.exist?("./data/#{file}.json")
+
+    File.open("./data/#{file}.json", 'r') do |f|
+      data = JSON.parse(f.read)
+      return data
+    end
+  end
+  def exit
+    File.write('./data/books.json', JSON.pretty_generate(@books))
   end
 
   def run
