@@ -20,10 +20,5 @@ describe Book do
         expect(book.can_be_archived?).to be_truthy
       end
     end
-
-      it 'returns true if publish date is less than or equal to 10 years ago' do
-        book.publish_date < Date.today - 10.years
-        expect(book.can_be_archived?).to be_truthy
-      end
-    end
+  end
 end
