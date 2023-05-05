@@ -1,40 +1,33 @@
-# require 'rspec'
-# require_relative '../classes/music_album'
+require 'date'
+require_relative '../classes/music_album'
 
-# # Mock Item class
-# class Item
-#   attr_writer :can_be_archived
+describe MusicAlbum do
+  let(:publish_date) { Date.parse('2021-01-01') }
+  let(:album) { MusicAlbum.new(publish_date, true, %w[pop rock], 'John Doe', 'My Album') }
 
-#   def initialize(id, name)
-#     @id = id
-#     @name = name
-#     @can_be_archived = true
-#   end
+  describe '#can_be_archived?' do
+    context 'when the album is on Spotify and the publish date is more than 5 years ago' do
+      it 'returns true' do
+        publish_date = Date.parse('2015-01-01')
+        album = MusicAlbum.new(publish_date, true, %w[pop rock], 'John Doe', 'My Album')
+        expect(album.can_be_archived?).to eq false
+      end
+    end
 
-#   def can_be_archived?
-#     @can_be_archived
-#   end
-# end
+    context 'when the album is not on Spotify' do
+      let(:album) { MusicAlbum.new(publish_date, false, %w[pop rock], 'John Doe', 'My Album') }
 
-# RSpec.describe MusicAlbum do
-#   describe '#can_be_archived?' do
-#     before do
-#       @album = MusicAlbum.new(1, true, true)
-#     end
+      it 'returns false' do
+        expect(album.can_be_archived?).to eq false
+      end
+    end
 
-#     it 'returns false if `can_be_archived` is set to false' do
-#       @album.can_be_archived = false
-#       expect(@album.can_be_archived?).to be false
-#     end
+    context 'when the publish date is less than 5 years ago' do
+      let(:publish_date) { Date.parse('2022-01-01') }
 
-#     it 'returns true if `on_spotify` is false' do
-#       @album.on_spotify = false
-#       expect(@album.can_be_archived?).to be true
-#     end
-
-#     it 'returns true if `on_spotify` is true and `can_be_archived` is true' do
-#       @album.on_spotify = true
-#       expect(@album.can_be_archived?).to be true
-#     end
-#   end
-# end
+      it 'returns false' do
+        expect(album.can_be_archived?).to eq false
+      end
+    end
+  end
+end
