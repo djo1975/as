@@ -1,23 +1,24 @@
 require 'json'
 
 module SaveBookData
-  def save_book(book)
+  def save_book(books)
     save_book = []
     books.each do |book|
-      save_book << { 'name' => book.name, 'publisher' => book.publisher, 'publish_date' => book.publish_date, 'cover_state' => book.cover_state }
+      save_book << { 'name' => book.name, 'publisher' => book.publisher, 'publish_date' => book.publish_date,
+                     'cover_state' => book.cover_state }
     end
 
     File.write('./data/books.json', JSON.generate(save_book))
   end
 
-  #   def save_genre(genres)
-  #     save_genres = []
-  #     genres.each do |genre|
-  #       save_genres << { 'name' => genre.name }
-  #     end
+  def save_label(labels)
+    save_labels = []
+    labels.each do |label|
+      save_labels << { 'title' => label.title, 'color' => label.color }
+    end
 
-  #     File.write('./data/genres.json', JSON.generate(save_genres))
-  #   end
+    File.write('./data/labels.json', JSON.generate(save_labels))
+  end
 end
 
 module LoadBookData
@@ -33,15 +34,15 @@ module LoadBookData
     end
   end
 
-  #   def load_genres
-  #     if File.exist?('./data/genres.json')
-  #       genres_json = File.read('./data/genres.json')
-  #       genres_hash = JSON.parse(genres_json)
-  #       genres_hash.map do |genre_hash|
-  #         Genre.new(genre_hash['name'])
-  #       end
-  #     else
-  #       []
-  #     end
-  #   end
+  def load_labels
+    if File.exist?('./data/labels.json')
+      labels_json = File.read('./data/labels.json')
+      labels_hash = JSON.parse(labels_json)
+      labels_hash.map do |label_hash|
+        Label.new(label_hash['title'], label_hash['color'])
+      end
+    else
+      []
+    end
+  end
 end
