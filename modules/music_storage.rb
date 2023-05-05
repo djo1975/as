@@ -4,15 +4,25 @@ module SaveData
   def save_music(musics)
     save_music = []
     musics.each do |music|
-      save_music << { 'publish_date' => music.publish_date, 'on_spotify' => music.on_spotify }
+      genres = music.genres.map(&:name)
+      save_music << {
+        'publish_date' => music.publish_date,
+        'on_spotify' => music.on_spotify,
+        'author' => music.author,
+        'album_name' => music.album_name,
+        'genres' => genres
+      }
     end
 
     File.write('./data/musics.json', JSON.generate(save_music))
   end
 
   def save_genre(genres)
+    current_genres = load_genres
+    current_genres += genres
+
     save_genres = []
-    genres.each do |genre|
+    current_genres.each do |genre|
       save_genres << { 'name' => genre.name }
     end
 
@@ -26,7 +36,14 @@ module LoadData
       musics_json = File.read('./data/musics.json')
       musics_hash = JSON.parse(musics_json)
       musics_hash.map do |music_hash|
-        MusicAlbum.new(music_hash['publish_date'], music_hash['on_spotify'])
+        genres = music_hash['genres'].map { |genre| Genre.new(genre) }
+        MusicAlbum.new(
+          music_hash['publish_date'],
+          music_hash['on_spotify'],
+          genres,
+          music_hash['author'],
+          music_hash['album_name']
+        )
       end
     else
       []

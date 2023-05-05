@@ -91,7 +91,14 @@ class App
     display_music_albums
   end
 
+  def add_genre
+    create_genre
+  end
+
   def list_genres
-    display_genres
+    puts 'Genres:'
+    load_genres.each do |genre|
+      puts genre.name
+    end
   end
 end

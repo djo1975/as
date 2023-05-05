@@ -1,3 +1,5 @@
+require 'active_support/all'
+
 class Item
   attr_accessor :id, :genre, :author, :label, :publish_date, :archived
 
@@ -12,7 +14,7 @@ class Item
   end
 
   def can_be_archived?
-    publish_date < 10.years.ago
+    @publish_date < 10.years.ago
   end
 
   def move_to_archive
